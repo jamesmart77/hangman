@@ -3,3 +3,18 @@
     width: 100%;
     height: 500px;
 }
+
+.panel-body {
+    height: 100%;
+}
+.hangman-section{
+    background-color: #ccc;
+    /* height: 100%; */
+}
+
+#challengeWord {
+    background-color: #333;
+    color: #ffffff;
+    text-align: center;
+    font-size: 30px;
+}

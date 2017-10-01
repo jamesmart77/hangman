@@ -1,0 +1,49 @@
+MVP
+- on page load 
+    - word is blank with underscores as placeholder for each letter of word
+    - instructions on screen
+    - user score is blank
+- array of 10 different words associated to theme
+- on key event
+    - guess is printed on page delimited with a comma between other guesses
+    - log of guesses is checked before deducting a turn from turns remaining
+    - if guess has not been tried before, loop through each letter in guess-word and make letter appear in appropriate space
+    - if guess is not in guess-word and has not already been guessed, add a line to hangman
+    - if turns remaining = 0 and guess-word is still incomplete, then "you lose"
+
+
+Steps
+    1. Create project with appropriate folders and commit initial
+    2. Pick theme for game
+        Guess-words
+        1. Telescope
+        2. Martian
+        3. Uranus
+        4. Galaxy
+        5. Black Hole
+        6. Spock
+        7. Warp Speed
+        8. Light Year
+        9. Kryogenesis
+        10. Vacuum
+
+    3. Create array of guess-words
+    4. Create object with the following properties:
+        - guessLetters: array (store previously guessed letters)
+    5. On page load, begin while loop until 'i' == length of guess-word array (> means last word was ). With each win/loss, iterate to next
+        'i'
+    6. Set # of underscores = guess-word length on page
+    7. On key event 
+        - assign entry to variable
+        - loop through guess.guessLetters to see if letter has already been guessed. If false, check if guessed letter is in guess-word. If true, 
+            replace appropriate underscores with guessed letter. Deduct remaining guesses and add to guessLetters
+    8. If all underscores are filled, win + 1 and start next guess word
+    9. If remaining guesses = 0 and underscores remain, print something clever and load next word  
+
+
+
+Additional features
+ 1. Add hangman pictures that will load as wrong guesses are added
+ 2. Images for space
+ 3. Style page for space
+ 4. CSS animations

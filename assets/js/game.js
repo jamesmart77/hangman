@@ -16,6 +16,13 @@ var playerStats = {
 
 var challengeWord = document.getElementById("challengeWord");
 
+// Get the modal
+var modal = document.getElementById('myModal');
+var modalText = document.getElementById('modalText');
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
 //on page load, execute
 document.addEventListener("load", pageLoad());
 
@@ -35,6 +42,8 @@ function wordLoad() {
 
     let resultString = " _".repeat(challengeWordDigits); //build placeholders for challenge word
     challengeWord.textContent = resultString; //overwrite existing text
+
+    btn.style.visibility = 'hidden';
 }
 
 //user guess
@@ -137,9 +146,14 @@ function didPlayerWin(){
     if(remainingChallengeText.indexOf('_') > -1) {
         //player has not won yet
     } else {
-        alert("You won!");
+        //get accomplished challenge word before it updates
+        var wordName = guessWordsArr[playerStats.currentWord];
         playerStats.wins += 1;
         gameReset();
+
+        //update modal for recent win
+        modalText.innerHTML = "<p>Nice Job! You figured out the word was <b>" + wordName + "</b>!</p>"
+        modal.style.display = "block";//display modal    
     }
 }
 
@@ -183,6 +197,5 @@ function gameReset() {
         guess.previousLetters = [];
         guess.remainingGuess = totalGuesses;
 }
-
 
 // }

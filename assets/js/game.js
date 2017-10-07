@@ -31,7 +31,7 @@ document.addEventListener("load", pageLoad());
 function pageLoad() {
     //assign initial counts
     updateStats();
-
+    feelingLucky();
     wordLoad(); //call wordLoad function for current challenge word to be loaded
 }
 
@@ -100,16 +100,10 @@ function pushLetter(letter) {
         guess.previousLetters.push(letter); //add to guess list
         // guess.remainingGuess -= 1; //subtract remaining guesses
 
-        console.log("remaining guess " + guess.remainingGuess);
-        console.log("previous letters " + guess.previousLetters);
-        console.log("current word " + guessWordsArr[playerStats.currentWord]);
-
         isEntryInWord(letter); //check if guess is in challenge word
         didPlayerWin();
         outOfGuesses();
         updateStats();
-
-        console.log("current word " + guessWordsArr[playerStats.currentWord]);
 
     };
 }
@@ -152,7 +146,7 @@ function isEntryInWord(letter) {
 // ============================================ //
 
 function updateHangmanPicture() {
-    $(".hangman-pic").empty();//clear div for new photo
+    $(".hangman-pic").empty(); //clear div for new photo
 
     let imgHangman = $("<img>");
     let hangmanPicPath = "assets/images/" + guess.remainingGuess + ".png";
@@ -163,10 +157,6 @@ function updateHangmanPicture() {
 
     // Each imageCrystal will be given a src link to the crystal image
     imgHangman.attr("src", hangmanPicPath);
-
-    // Each imageCrystal will be given a data attribute called data-crystalValue.
-    // This data attribute will be set equal to the array value.
-    //imgHangman.attr("data-crystalvalue", numberOptions[i]);
 
     // Lastly, each crystal image (with all it classes and attributes) will get added to the page.
     $(".hangman-pic").append(imgHangman);
@@ -235,19 +225,40 @@ function gameReset() {
     //clear previous guesses
     guess.previousLetters = [];
     guess.remainingGuess = totalGuesses;
+
+    updateHangmanPicture();
 }
 
 function checkGuess() {
     // var guessInput = document.getElementById("fullGuess");
     var fullGuess = document.getElementById("fullGuess").value;
 
-    if (fullGuess.toLowerCase() === guessWordsArr[playerStats.currentWord].toLowerCase()) {
+    if (fullGuess.toLowerCase() == guessWordsArr[playerStats.currentWord].toLowerCase()) {
         victory();
+        $('#fullGuess').val('');
     } else {
         guess.remainingGuess -= 1;
         guessInput.textContent = "";
         outOfGuesses();
     }
     updateStats();
+}
+
+function feelingLucky() {
+    if ($("#fullGuess").css('display') === 'none') {
+        $("#guessbtn").show();
+        $("#fullGuess").show();
+        $("#feelingLucky").hide();
+    } else {
+        $("#guessbtn").hide();
+        $("#fullGuess").hide();
+        $("#feelingLucky").show();
+    }
+    // var x = document.getElementById("myDIV");
+    // if (x.style.display === "none") {
+    //     x.style.display = "block";
+    // } else {
+    //     x.style.display = "none";
+    // }
 }
 // }
